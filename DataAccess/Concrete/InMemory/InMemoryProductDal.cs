@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,9 +24,20 @@ namespace DataAccess.Concrete.InMemory
                 new Product{ProductId=5,CategoryId=2,ProductName="Fare",UnitPrice=85,UnitsInStock=1}
             };
         }
+
+        public void Add(Product entitiy)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddProduct(Product product)
         {
             _products.Add(product);
+        }
+
+        public void Delete(Product entity)
+        {
+            throw new NotImplementedException();
         }
 
         public void DeleteProduct(Product product)
@@ -33,15 +45,30 @@ namespace DataAccess.Concrete.InMemory
             Product productDelete = _products.SingleOrDefault(x => x.ProductId == product.ProductId);
             _products.Remove(productDelete);
         }
-       
+
+        public List<Product> Get(Expression<Func<Product, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetAll()
         {
             return _products; 
         }
 
+        public List<Product> GetAll(Expression<Func<Product, bool>> expression = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetAllByCategory(int id)
         {
             return _products.Where(x=>x.CategoryId==id).ToList();
+        }
+
+        public List<Product> GetAllByCategoryId(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public void UpdateProduct(Product product)
@@ -51,6 +78,11 @@ namespace DataAccess.Concrete.InMemory
             product.CategoryId = prdouctToUpdate.CategoryId;
             product.UnitPrice = prdouctToUpdate.UnitPrice;
             product.UnitsInStock = prdouctToUpdate.UnitsInStock;
+        }
+
+        public void Updatet(Product entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
