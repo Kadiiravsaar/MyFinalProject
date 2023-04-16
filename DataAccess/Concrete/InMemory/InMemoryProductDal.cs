@@ -84,5 +84,10 @@ namespace DataAccess.Concrete.InMemory
         {
             throw new NotImplementedException();
         }
+
+        Product IGenericRepositoryDal<Product>.Get(Expression<Func<Product, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

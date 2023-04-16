@@ -18,6 +18,11 @@ namespace Buisness.Concrete
             _productDal = productDal;
         }
 
+        public Product Get(int id)
+        {
+            return _productDal.Get(x => x.ProductId == id);
+        }
+
         public List<Product> GetAll()
         {
             return _productDal.GetAll();
@@ -25,7 +30,23 @@ namespace Buisness.Concrete
 
         public List<Product> GetAllByCategoryId(int id)
         {
-          return _productDal.Get(c=>c.CategoryId == id);
+            return _productDal.GetAll(c => c.CategoryId == id);
+        }
+
+        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        {
+            return _productDal.GetAll(x => x.UnitPrice > min && x.UnitPrice < max);
+        }
+        public List<Product> GetByUnitInStock(short min, short max)
+        {
+           
+            var prd =  _productDal.GetAll(x => x.UnitsInStock > min && x.UnitsInStock < max);
+            if (prd.Count == 0)
+            {
+                Console.WriteLine("İçerisi Boş usta");
+            }
+            return prd;
+
         }
     }
 }

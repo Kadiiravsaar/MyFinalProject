@@ -12,7 +12,7 @@ namespace DataAccess.Abstract
     public interface IGenericRepositoryDal<T> where T : class,IEntity,new()
     {
         List<T> GetAll(Expression<Func<T, bool>> expression = null);
-        List<T> Get(Expression<Func<T,bool>> expression);
+        T Get(Expression<Func<T,bool>> expression);
         void Add(T entitiy);
         void Updatet(T entity);
         void Delete(T entity);

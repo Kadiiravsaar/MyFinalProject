@@ -1,6 +1,5 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,38 +9,36 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EFProductDal : IProductDal
+    public class EFCustomerDal : ICustomerDal
     {
-        public void Add(Product entitiy)
+        public void Add(Customer entitiy)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Product entity)
+        public void Delete(Customer entity)
         {
             throw new NotImplementedException();
         }
 
-        public Product Get(Expression<Func<Product, bool>> expression)
+        public Customer Get(Expression<Func<Customer, bool>> expression)
         {
+
             using (AppDbContext context = new AppDbContext())
             {
-                var prod = context.Set<Product>().SingleOrDefault(expression);
-                return prod;
+                return context.Set<Customer>().SingleOrDefault(expression);
             }
         }
 
-        public List<Product> GetAll(Expression<Func<Product, bool>> expression = null)
+        public List<Customer> GetAll(Expression<Func<Customer, bool>> expression = null)
         {
             using (AppDbContext context = new AppDbContext())
             {
-                return expression == null ? context.Set<Product>().ToList(): context.Set<Product>().Where(expression).ToList();
+                return expression == null ? context.Set<Customer>().ToList() : context.Set<Customer>().Where(expression).ToList();
             }
         }
 
-      
-
-        public void Updatet(Product entity)
+        public void Updatet(Customer entity)
         {
             throw new NotImplementedException();
         }
