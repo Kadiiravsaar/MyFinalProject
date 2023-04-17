@@ -1,4 +1,6 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -30,30 +32,14 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
-        public void AddProduct(Product product)
-        {
-            _products.Add(product);
-        }
-
         public void Delete(Product entity)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteProduct(Product product)
-        {
-            Product productDelete = _products.SingleOrDefault(x => x.ProductId == product.ProductId);
-            _products.Remove(productDelete);
-        }
-
-        public List<Product> Get(Expression<Func<Product, bool>> expression)
+        public Product Get(Expression<Func<Product, bool>> expression)
         {
             throw new NotImplementedException();
-        }
-
-        public List<Product> GetAll()
-        {
-            return _products; 
         }
 
         public List<Product> GetAll(Expression<Func<Product, bool>> expression = null)
@@ -61,31 +47,12 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
-        public List<Product> GetAllByCategory(int id)
-        {
-            return _products.Where(x=>x.CategoryId==id).ToList();
-        }
-
-        public List<Product> GetAllByCategoryId(int id)
+        public List<Product> GetAllOrderBy()
         {
             throw new NotImplementedException();
-        }
-
-        public void UpdateProduct(Product product)
-        {
-            Product prdouctToUpdate = _products.SingleOrDefault(x=>x.ProductId == product.ProductId);
-            product.ProductName = prdouctToUpdate.ProductName;
-            product.CategoryId = prdouctToUpdate.CategoryId;
-            product.UnitPrice = prdouctToUpdate.UnitPrice;
-            product.UnitsInStock = prdouctToUpdate.UnitsInStock;
         }
 
         public void Updatet(Product entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Product IGenericRepositoryDal<Product>.Get(Expression<Func<Product, bool>> expression)
         {
             throw new NotImplementedException();
         }

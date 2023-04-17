@@ -3,6 +3,7 @@ using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleUI
 {
@@ -10,31 +11,62 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //ProductTest();
 
-            //foreach (var prod in productManager.GetAll())
-            //{
-            //    Console.WriteLine(prod.ProductName);
-            //}
-      
-            ProductManager productManager = new ProductManager(new EFProductDal());
+            //ProductWithId();
 
-            foreach (var prdUnit in productManager.GetByUnitInStock(1,2))
+            //ProductOrderBy();
+
+
+            //CustomerContactName();
+
+
+            //OrderShipCity();
+        }
+
+        private static void OrderShipCity()
+        {
+            int sayac = 1;
+            OrderManager orderManager = new OrderManager(new EFOrderDal());
+            foreach (var orders in orderManager.GetAll())
             {
-                
-                Console.WriteLine(prdUnit.UnitsInStock);
+                Console.WriteLine(sayac + " " + orders.ShipCity);
+                sayac++;
             }
+        }
 
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //CustomerManager customerManager = new CustomerManager(new EFCustomerDal());
-            //foreach (var customers in customerManager.GetCustomers())
-            //{
-            //    Console.WriteLine(customers.ContactName);
-            //}
-            
-            
+        private static void CustomerContactName()
+        {
+            CustomerManager customerManager = new CustomerManager(new EFCustomerDal());
+            foreach (var customers in customerManager.GetCustomers())
+            {
+                Console.WriteLine(customers.ContactName);
+            }
+        }
 
+        private static void ProductOrderBy()
+        {
+            ProductManager productManager = new ProductManager(new EFProductDal());
+            foreach (var prod in productManager.GetAllOrderBy())
+            {
+                Console.WriteLine(prod.ProductName);
+            }
+        }
+
+        private static void ProductWithId()
+        {
+            ProductManager productManager = new ProductManager(new EFProductDal());
+            Console.WriteLine(productManager.Get(2).ProductName);
+        }
+
+        private static void ProductTest()
+        {
+            ProductManager productManager = new ProductManager(new EFProductDal());
+            foreach (var prod in productManager.GetAll())
+            {
+                Console.WriteLine(prod.ProductName);
+            }
+            Console.WriteLine(productManager.GetAll().Count());
 
         }
     }

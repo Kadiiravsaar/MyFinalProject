@@ -48,5 +48,11 @@ namespace Buisness.Concrete
             return prd;
 
         }
+
+        public List<Product> GetAllOrderBy()
+        {
+            var result = _productDal.GetAllOrderBy();
+            return result;
+        }
     }
 }

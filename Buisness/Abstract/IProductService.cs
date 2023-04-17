@@ -17,5 +17,7 @@ namespace Buisness.Abstract
         List<Product> GetByUnitPrice(decimal min, decimal max);
         List<Product> GetByUnitInStock(short min, short max);
 
+        List<Product> GetAllOrderBy();
+
     }
 }

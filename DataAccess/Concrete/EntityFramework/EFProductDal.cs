@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System;
 using System.Collections.Generic;
@@ -10,40 +12,15 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EFProductDal : IProductDal
+    public class EFProductDal : EFGenericRepository<Product, AppDbContext>, IProductDal
     {
-        public void Add(Product entitiy)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Product entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product Get(Expression<Func<Product, bool>> expression)
+        public List<Product> GetAllOrderBy()
         {
             using (AppDbContext context = new AppDbContext())
             {
-                var prod = context.Set<Product>().SingleOrDefault(expression);
-                return prod;
+                var result = context.Products.OrderBy(x=>x.ProductName).ToList();
+                return result;
             }
-        }
-
-        public List<Product> GetAll(Expression<Func<Product, bool>> expression = null)
-        {
-            using (AppDbContext context = new AppDbContext())
-            {
-                return expression == null ? context.Set<Product>().ToList(): context.Set<Product>().Where(expression).ToList();
-            }
-        }
-
-      
-
-        public void Updatet(Product entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }
