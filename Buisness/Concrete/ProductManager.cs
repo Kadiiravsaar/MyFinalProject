@@ -1,6 +1,7 @@
 ﻿using Buisness.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,12 @@ namespace Buisness.Concrete
         public List<Product> GetAllOrderBy()
         {
             var result = _productDal.GetAllOrderBy();
+            return result;
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            var result = _productDal.GetProductDetails();
             return result;
         }
     }

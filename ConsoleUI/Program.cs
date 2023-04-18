@@ -22,6 +22,13 @@ namespace ConsoleUI
 
 
             //OrderShipCity();
+
+
+            ProductManager productManager = new ProductManager(new EFProductDal());
+            foreach (var prod in productManager.GetProductDetails())
+            {
+                Console.WriteLine(prod.ProductName + " " + prod.CategoryName);
+            }
         }
 
         private static void OrderShipCity()
