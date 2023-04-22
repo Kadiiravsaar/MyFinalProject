@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Results
+namespace Core.Utilities.Results
 {
+    // Temel void işlemleri için
     public interface IResult
     {
         bool Success { get; }

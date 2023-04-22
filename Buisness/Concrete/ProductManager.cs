@@ -1,12 +1,11 @@
 ﻿using Buisness.Abstract;
+using Buisness.Costants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
@@ -60,6 +59,16 @@ namespace Buisness.Concrete
         {
             var result = _productDal.GetProductDetails();
             return result;
+        }
+
+        public IResult AddProduct(Product product)
+        {
+            if (product.ProductName.Length<3)
+            {
+                return new ErrorResult(Messages.ProductNameIsInValid);
+            }
+             _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
         }
     }
 }
