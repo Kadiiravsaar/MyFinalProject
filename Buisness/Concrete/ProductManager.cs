@@ -18,56 +18,69 @@ namespace Buisness.Concrete
             _productDal = productDal;
         }
 
-        public Product Get(int id)
+        public IDataResult<Product> Get(int id)
         {
-            return _productDal.Get(x => x.ProductId == id);
+            if (_productDal.Get(x => x.ProductId == id) == null)
+            {
+                return new ErrorDataResult<Product>(Messages.ProductNotId);
+            }
+            return new SuccessDataResult<Product>(_productDal.Get(x => x.ProductId == id), Messages.Product);
+
         }
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
-            return _productDal.GetAll();
+            if (DateTime.Now.Hour == 22)
+            {
+                return new ErrorDataResult<List<Product>>(Messages.MaintTenanceTime);
+            }
+
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductListed);
+
         }
 
-        public List<Product> GetAllByCategoryId(int id)
+        public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return _productDal.GetAll(c => c.CategoryId == id);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(c => c.CategoryId == id));
         }
 
-        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
-            return _productDal.GetAll(x => x.UnitPrice > min && x.UnitPrice < max);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x => x.UnitPrice > min && x.UnitPrice < max));
         }
-        public List<Product> GetByUnitInStock(short min, short max)
+
+        public IDataResult<List<Product>> GetByUnitInStock(short min, short max)
+        {
+            if (min<0)
+            {
+                return new ErrorDataResult<List<Product>>(Messages.ProductEmpty);
+            }
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(x => x.UnitsInStock > min && x.UnitsInStock < max));
+
+        }
+
+        public IDataResult<List<Product>> GetAllOrderBy()
         {
            
-            var prd =  _productDal.GetAll(x => x.UnitsInStock > min && x.UnitsInStock < max);
-            if (prd.Count == 0)
+            return new SuccessDataResult<List<Product>>(_productDal.GetAllOrderBy());
+        }
+
+        public IDataResult<List<ProductDetailDto>> GetProductDetails()
+        {
+            if (DateTime.Now.Hour == 10)
             {
-                Console.WriteLine("İçerisi Boş usta");
+                return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintTenanceTime);
             }
-            return prd;
-
-        }
-
-        public List<Product> GetAllOrderBy()
-        {
-            var result = _productDal.GetAllOrderBy();
-            return result;
-        }
-
-        public List<ProductDetailDto> GetProductDetails()
-        {
-            var result = _productDal.GetProductDetails();
-            return result;
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
         public IResult AddProduct(Product product)
         {
-            if (product.ProductName.Length<3)
+            if (product.ProductName.Length < 3)
             {
-                return new ErrorResult(Messages.ProductNameIsInValid);
+                return new ErrorResult(Messages.ProductNameInValid);
             }
-             _productDal.Add(product);
+            _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
         }
     }

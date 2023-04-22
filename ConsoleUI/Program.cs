@@ -24,11 +24,19 @@ namespace ConsoleUI
             //OrderShipCity();
 
 
+
             ProductManager productManager = new ProductManager(new EFProductDal());
-            foreach (var prod in productManager.GetProductDetails())
+
+            var result = productManager.GetProductDetails();
+            if (result.Success)
             {
-                Console.WriteLine(prod.ProductName + " " + prod.CategoryName);
+                foreach (var prod in result.Data)
+                {
+                    Console.WriteLine(prod.ProductName + " " + prod.CategoryName);
+                }
+
             }
+            Console.WriteLine(result.Message);    
         }
 
         private static void OrderShipCity()
@@ -54,7 +62,7 @@ namespace ConsoleUI
         private static void ProductOrderBy()
         {
             ProductManager productManager = new ProductManager(new EFProductDal());
-            foreach (var prod in productManager.GetAllOrderBy())
+            foreach (var prod in productManager.GetAllOrderBy().Data)
             {
                 Console.WriteLine(prod.ProductName);
             }
@@ -63,17 +71,16 @@ namespace ConsoleUI
         private static void ProductWithId()
         {
             ProductManager productManager = new ProductManager(new EFProductDal());
-            Console.WriteLine(productManager.Get(2).ProductName);
+            Console.WriteLine(productManager.Get(2).Data);
         }
 
         private static void ProductTest()
         {
             ProductManager productManager = new ProductManager(new EFProductDal());
-            foreach (var prod in productManager.GetAll())
+            foreach (var prod in productManager.GetAll().Data)
             {
                 Console.WriteLine(prod.ProductName);
             }
-            Console.WriteLine(productManager.GetAll().Count());
 
         }
     }

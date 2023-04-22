@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,13 @@ namespace Buisness.Costants
     public static class Messages
     {
         public static string ProductAdded = "Ürün Eklendi";
-        public static string ProductNameIsInValid = "Ürün adı geçersiz";
+        public static string ProductNameInValid = "Ürün adı geçersiz";
+        public static string MaintTenanceTime = "Sistem Bakımda";
+        internal static string ProductListed;
+        public static string Product;
 
+        public static string ProductNotId;
+
+        public static string ProductEmpty = "Ürün Boş";
     }
 }

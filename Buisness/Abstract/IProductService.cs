@@ -11,16 +11,16 @@ namespace Buisness.Abstract
 {
     public interface IProductService
     {
-        List<Product> GetAll();
-        Product Get(int id);
+        IDataResult<List<Product>> GetAll();
+        IDataResult<Product> Get(int id);
 
-        List<Product> GetAllByCategoryId(int id);
+        IDataResult<List<Product>> GetAllByCategoryId(int id);
 
-        List<Product> GetByUnitPrice(decimal min, decimal max);
-        List<Product> GetByUnitInStock(short min, short max);
+        IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max);
+        IDataResult<List<Product>> GetByUnitInStock(short min, short max);
 
-        List<Product> GetAllOrderBy();
-        List<ProductDetailDto> GetProductDetails();
+        IDataResult<List<Product>> GetAllOrderBy();
+        IDataResult<List<ProductDetailDto>> GetProductDetails();
 
         IResult AddProduct(Product product);
 
