@@ -18,7 +18,7 @@ namespace Buisness.Concrete
             _productDal = productDal;
         }
 
-        public IDataResult<Product> Get(int id)
+        public IDataResult<Product> GetById(int id)
         {
             if (_productDal.Get(x => x.ProductId == id) == null)
             {
@@ -30,7 +30,7 @@ namespace Buisness.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 20)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintTenanceTime);
             }
@@ -61,7 +61,7 @@ namespace Buisness.Concrete
 
         public IDataResult<List<Product>> GetAllOrderBy()
         {
-           
+         
             return new SuccessDataResult<List<Product>>(_productDal.GetAllOrderBy());
         }
 

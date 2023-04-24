@@ -19,6 +19,7 @@ namespace Core.DataAccess.EntityFramework
             {
                 var category = context.Entry(entitiy);
                 category.State = EntityState.Added;
+                context.SaveChanges(); // Eğer bunu çağırmazsan mesaj olarak eklendi gözükür ancak dbye yansıtmaz.
             }
         }
 
@@ -49,6 +50,7 @@ namespace Core.DataAccess.EntityFramework
             {
                 var category = context.Entry(entity);
                 category.State = EntityState.Modified;
+                context.SaveChanges();
             }
         }
     }

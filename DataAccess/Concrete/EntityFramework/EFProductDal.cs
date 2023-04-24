@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (AppDbContext context = new AppDbContext())
             {
-                var result = context.Products.OrderBy(x => x.ProductName).ToList();
+                var result = context.Products.OrderByDescending(x => x.ProductId).ToList();
                 return result;
             }
         }
