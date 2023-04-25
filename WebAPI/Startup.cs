@@ -32,8 +32,8 @@ namespace WebAPI
         {
 
             services.AddControllers();
-            services.AddSingleton<IProductService, ProductManager>();
-            services.AddSingleton<IProductDal, EFProductDal>();
+            //services.AddSingleton<IProductService, ProductManager>(); // Tek bir instance taþýmak için kullanýlýr ve herkese onu verir
+            //services.AddSingleton<IProductDal, EFProductDal>();               AutoFac kurulup taþýndý
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
