@@ -1,6 +1,7 @@
 ﻿using Buisness.Abstract;
 using Buisness.Costants;
 using Buisness.ValidationRules.FluentValidation;
+using Core.Aspects.AutoFac.Validation;
 using Core.CrossCuttingConcerns;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
@@ -80,6 +81,7 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
+        [ValidationAspect(typeof(ProductValidator))] // Add metodunu doğrula => productValidator de ki kurallara göre (kurallar ValidationAspect yazılıyor)
         public IResult AddProduct(Product product)
         {
 
