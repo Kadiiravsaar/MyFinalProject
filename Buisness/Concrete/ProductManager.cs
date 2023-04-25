@@ -1,11 +1,17 @@
 ﻿using Buisness.Abstract;
 using Buisness.Costants;
+using Buisness.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using ValidationException = FluentValidation.ValidationException;
 
 namespace Buisness.Concrete
 {
@@ -51,7 +57,7 @@ namespace Buisness.Concrete
 
         public IDataResult<List<Product>> GetByUnitInStock(short min, short max)
         {
-            if (min<0)
+            if (min < 0)
             {
                 return new ErrorDataResult<List<Product>>(Messages.ProductEmpty);
             }
@@ -61,7 +67,7 @@ namespace Buisness.Concrete
 
         public IDataResult<List<Product>> GetAllOrderBy()
         {
-         
+
             return new SuccessDataResult<List<Product>>(_productDal.GetAllOrderBy());
         }
 
@@ -76,10 +82,8 @@ namespace Buisness.Concrete
 
         public IResult AddProduct(Product product)
         {
-            if (product.ProductName.Length < 3)
-            {
-                return new ErrorResult(Messages.ProductNameInValid);
-            }
+
+            ValidationTool.Validate(new ProductValidator(), product);
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
         }
