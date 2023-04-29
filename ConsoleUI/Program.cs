@@ -71,7 +71,7 @@ namespace ConsoleUI
         private static void ProductWithId()
         {
             ProductManager productManager = new ProductManager(new EFProductDal());
-            Console.WriteLine(productManager.Get(2).Data);
+            Console.WriteLine(productManager.GetById(2).Data);
         }
 
         private static void ProductTest()
