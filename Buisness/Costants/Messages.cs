@@ -18,5 +18,9 @@ namespace Buisness.Costants
         public static string ProductNotId;
 
         public static string ProductEmpty = "Ürün Boş";
+        public static string CategoryCountMuch = "Ürün adı ile çok sayıda kategori var";
+
+        public static string ProdNameAlready = "Aynı ada sahip ürün var";
+        public static string CategoryLimitExceded = "Kategori limiti aşıldığı için yeni ürün eklenemiyor";
     }
 }
