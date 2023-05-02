@@ -89,6 +89,7 @@ namespace Buisness.Concrete
               
         
         // Claim => Yetki (iddia etmek)
+
         [ValidationAspect(typeof(ProductValidator))] // Add metodunu doğrula => productValidator de ki kurallara göre (kurallar ValidationAspect yazılıyor)
         public IResult AddProduct(Product product)
         {

@@ -9,7 +9,8 @@ namespace Core.Utilities.Security.JWT
 {
     public interface ITokenHelper
     {
-        AccessToken CreateToken(User user, List<OperationClaim> operationClaim); // token üretecek mekanizma (Kim için: User, hangi yetkileri koyalım: OperationClaim)
+        AccessToken CreateToken(User user, List<OperationClaim> operationClaim); 
+        // token üretecek mekanizma (Kim için: User, hangi yetkileri koyalım: OperationClaim)
     }
 }
      

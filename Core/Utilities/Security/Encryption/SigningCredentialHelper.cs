@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Security.Encryption
 {
-    public class SigningCredentialHelpers // credential => kimlik bilgileri olarak çevirir. Signing de imza
+    public class SigningCredentialHelper // credential => kimlik bilgileri olarak çevirir. Signing de imza
     {
         public static SigningCredentials CreateSigningCredentials(SecurityKey securityKey) // json token servislerinin oluşturulabilmesi için gerekli
         {
