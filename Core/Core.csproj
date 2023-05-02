@@ -14,9 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Extensions\" />
-    <Folder Include="Utilities\Security\Encryption\" />
-    <Folder Include="Utilities\Security\Hashing\" />
-    <Folder Include="Utilities\Security\JWT\" />
   </ItemGroup>
 
 </Project>
