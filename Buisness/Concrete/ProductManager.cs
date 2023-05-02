@@ -86,6 +86,9 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
+              
+        
+        // Claim => Yetki (iddia etmek)
         [ValidationAspect(typeof(ProductValidator))] // Add metodunu doğrula => productValidator de ki kurallara göre (kurallar ValidationAspect yazılıyor)
         public IResult AddProduct(Product product)
         {
